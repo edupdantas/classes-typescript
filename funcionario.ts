@@ -2,7 +2,7 @@ import Pessoa from "./pessoa";
 import Cargo from "./cargo";
 import IUsuario from "./IUsuario"
 
-export class Funcionario extends Pessoa implements IUsuario {
+export default class Funcionario extends Pessoa implements IUsuario {
     cpf: string;
     nome: string;
     telefone: string;
@@ -13,9 +13,11 @@ export class Funcionario extends Pessoa implements IUsuario {
         return true;
     }
 
-    constructor(cpf: string, nome: string, telefone: string, salario: number) {
+    constructor(cpf: string, nome: string, telefone: string, salario: number, cargo: Cargo) {
         super(cpf, nome, telefone);
+
         this.salario = salario;
+        this.addCargo(cargo);
     }
 
     addCargo(cargo: Cargo){

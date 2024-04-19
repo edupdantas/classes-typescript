@@ -1,7 +1,7 @@
 import Conta from "./conta";
 import Operacao from "./Operacao";
 import Cliente from "./cliente";
-export class Poupanca extends Conta {
+export default class Poupanca extends Conta {
     creditos: Operacao[];
     debitos: Operacao[];
     numero: string;
@@ -11,24 +11,24 @@ export class Poupanca extends Conta {
         super(numero, cliente);
     }
 
-    sacar(operacao: Operacao) {
-        if(this.calcularSaldo()<operacao.valor){
+    sacar(valor: number) {
+        if(this.calcularSaldo()<valor){
             console.log("Impossível fazer esse saque!")
         }else{
-            super.sacar(operacao);
+            super.sacar(valor);
         }
     }
 
-    depositar(operacao: Operacao) {
-        super.depositar(operacao);
+    depositar(valor: number) {
+        super.depositar(valor);
     }
 
     calcularSaldo(): number {
-        let sumCreditos: number;
+        let sumCreditos: number = 0;
         this.creditos.map(credito => {
             sumCreditos += credito.valor;
         })
-        let sumDebitos: number;
+        let sumDebitos: number = 0;
         this.debitos.map(debito => {
             sumDebitos += debito.valor;
         })

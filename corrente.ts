@@ -2,7 +2,7 @@ import Conta from "./conta";
 import Operacao from "./Operacao";
 import Cliente from "./cliente";
 
-export class Corrente extends Conta{
+export default class Corrente extends Conta{
     creditos: Operacao[];
     debitos: Operacao[];
     numero: string;
@@ -14,37 +14,37 @@ export class Corrente extends Conta{
         this.limite = limite;
     }
 
-    sacar(operacao: Operacao) {
-        if(this.calcularSaldo()<operacao.valor){
+    sacar(valor: number) {
+        if(this.calcularSaldo()<valor){
             console.log("Impossível fazer esse saque!")
         }else{
-            super.sacar(operacao);
+            super.sacar(valor);
         }
     }
 
-    depositar(operacao: Operacao) {
-        super.depositar(operacao);
+    depositar(valor: number) {
+        super.depositar(valor);
     }
 
-    transferir(destino: Conta,operacao: Operacao) {
-        if(this.calcularSaldo()<operacao.valor){
+    transferir(destino: Conta,valor: number) {
+        if(this.calcularSaldo()<valor){
             console.log("Impossível fazer essa transferencia!")
         }else{
-            super.sacar(operacao);
-            destino.depositar(operacao);
+            super.sacar(valor);
+            destino.depositar(valor);
         }
     }
 
     calcularSaldo(): number {
-        let sumCreditos: number;
+        var sumCreditos: number = 0;
         this.creditos.map(credito => {
-            sumCreditos += credito.valor;
+            sumCreditos = sumCreditos + credito.valor;
         })
-        let sumDebitos: number;
+        let sumDebitos: number = 0;
         this.debitos.map(debito => {
-            sumDebitos += debito.valor;
+            sumDebitos = sumDebitos + debito.valor;
         })
-        return (sumCreditos-sumDebitos)+this.limite;
+        return ((sumCreditos-sumDebitos)+this.limite);
     }
 
 }

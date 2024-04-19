@@ -2,22 +2,22 @@ import Operacao from "./Operacao";
 import Cliente from "./cliente";
 
 export default abstract class Conta {
-    abstract numero: string;
-    abstract creditos: Operacao[] = [];
-    abstract debitos: Operacao[] = [];
-    abstract cliente: Cliente;
+     numero: string;
+     creditos: Operacao[] = [];
+     debitos: Operacao[] = [];
+     cliente: Cliente;
 
     constructor(numero: string, cliente: Cliente) {
         this.cliente = cliente;
         this.numero = numero;
     }
 
-    depositar(operacao: Operacao) {
-        this.creditos.push(operacao)
+    depositar(valor: number) {
+        this.creditos.push(new Operacao(valor))
     }
 
-    sacar(operacao: Operacao) {
-        this.debitos.push(operacao)
+    sacar(valor: number) {
+        this.debitos.push(new Operacao(valor))
     }
 
 

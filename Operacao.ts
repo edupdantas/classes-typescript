@@ -1,11 +1,12 @@
-export default abstract class Operacao {
+export default class Operacao {
 
-    abstract valor: number;
+     valor: number;
 
-    abstract data: Date = new Date();
+     data: Date = new Date();
 
     constructor(valor: number) {
         this.valor = valor;
+        this.data = new Date();
     }
 
 }

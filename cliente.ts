@@ -20,7 +20,7 @@ export default class Cliente extends Pessoa implements IUsuario {
     }
 
     adicionarEndereco(cep: string, logradouro: string, numero: string, complemento: string, cidade: string, uf: string) {
-        this.enderecos.push(Endereco.constructor(cep, logradouro, numero, complemento, cidade, uf));
+        this.enderecos.push(new Endereco(cep, logradouro, numero, complemento, cidade, uf));
     }
 
     listarEnderecos(){
