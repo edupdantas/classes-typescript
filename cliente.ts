@@ -1,18 +1,31 @@
-import { Endereco } from "./endereco";
-import { Pessoa } from "./pessoa";
+import Endereco from "./endereco";
+import Pessoa from "./pessoa";
+import IUsuario from "./IUsuario"
+import Conta from "./conta";
 
-export class Cliente extends Pessoa {
-    
-    private _enderecos: Endereco[] = [];
+export default class Cliente extends Pessoa implements IUsuario {
+    cpf: string;
+    nome: string;
+    telefone: string;
+    vip: boolean;
+    enderecos: Endereco[] = [];
 
-    public get enderecos(): Endereco[] {
-        return this._enderecos;
+    constructor(cpf: string, nome: string, telefone: string, vip: boolean) {
+        super(cpf, nome, telefone);
+        this.vip = vip;
     }
-    public set enderecos(value: Endereco[]) {
-        this._enderecos = value;
+
+    autenticar(): boolean {
+        return true;
     }
 
-    public adicionarEndereco(endereco: Endereco) {
-        this._enderecos.push(endereco);
+    adicionarEndereco(cep: string, logradouro: string, numero: string, complemento: string, cidade: string, uf: string) {
+        this.enderecos.push(Endereco.constructor(cep, logradouro, numero, complemento, cidade, uf));
+    }
+
+    listarEnderecos(){
+        this.enderecos.map((endereco,index) =>{
+            console.log("Endereco " + (index+1) + ": " + endereco.toString())
+        })
     }
 }

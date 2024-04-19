@@ -1,23 +1,21 @@
-export class Endereco {
-    private _cep: String;
-    private _logradouro: String;
+export default class Endereco {
+    cep: string;
+    logradouro: string;
+    numero: string
+    complemento: string;
+    cidade: string;
+    uf: string;
 
-    constructor(cep: String, logradouro: string) {
-        this._cep = cep;
-        this._logradouro = logradouro;
+    constructor(cep: string, logradouro: string, numero: string, complemento: string, cidade: string, uf: string) {
+        this.cep = cep;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.cidade = cidade;
+        this.uf = uf;
     }
 
-    public get cep(): String {
-        return this._cep;
-    }
-    public set cep(value: String) {
-        this._cep = value;
-    }
-
-    public get logradouro(): String {
-        return this._logradouro;
-    }
-    public set logradouro(value: String) {
-        this._logradouro = value;
+    toString(): string {
+        return `CEP: ${this.cep}, Logradouro: ${this.logradouro}, Número: ${this.numero}, Complemento: ${this.complemento}, Cidade: ${this.cidade}, UF: ${this.uf}`;
     }
 }

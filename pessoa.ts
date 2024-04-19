@@ -1,19 +1,16 @@
-export abstract class Pessoa {
-   
-    private _nome: String;
-    private _idade: Number;
-    
-    public get nome(): String {
-        return this._nome;
-    }
-    public set nome(value: String) {
-        this._nome = value;
-    }
-    public get idade(): Number {
-        return this._idade;
-    }
-    public set idade(value: Number) {
-        this._idade = value;
+export default abstract class Pessoa {
+
+    abstract cpf: string;
+
+    abstract nome: string;
+
+    abstract telefone: string;
+
+    constructor(cpf: string, nome: string, telefone: string) {
+        this.cpf = cpf;
+        this.nome = nome;
+        this.telefone = telefone;
+
     }
 
 }
